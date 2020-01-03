@@ -46,6 +46,7 @@ module prim_fifo_sync #(
 
   // Normal FIFO construction
   end else begin : gen_normal_fifo
+    `ASSERT_INIT(paramCheckDepthW, DepthW == $clog2(Depth+1))
 
     // consider Depth == 1 case when $clog2(1) == 0
     localparam int unsigned PTRV_W    = $clog2(Depth) + ~|$clog2(Depth);

@@ -16,7 +16,8 @@ module prim_ram_2p #(
   parameter int Width = 32, // bit
   parameter int Depth = 128,
 
-  localparam int Aw   = $clog2(Depth) // derived parameter
+  // Do not touch
+  parameter int Aw    = $clog2(Depth) // derived parameter
 ) (
   input clk_a_i,
   input clk_b_i,
@@ -35,6 +36,8 @@ module prim_ram_2p #(
 );
 
   import prim_pkg::*;
+
+  `ASSERT_INIT(paramCheckAw, Aw == $clog2(Depth))
 
   if (Impl == ImplGeneric) begin : gen_mem_generic
     prim_generic_ram_2p #(

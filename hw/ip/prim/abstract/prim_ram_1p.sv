@@ -31,6 +31,8 @@ module prim_ram_1p #(
 
   import prim_pkg::*;
 
+  `ASSERT_INIT(paramCheckAw, Aw == $clog2(Depth))
+
   if (Impl == ImplGeneric || Impl == ImplXilinx) begin : gen_mem_generic
     prim_generic_ram_1p #(
       .Width(Width),
